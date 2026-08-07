@@ -14,9 +14,13 @@
 
 @include('layouts.websitecategories')
 
+
+
 <!-- Featured Products -->
 
 @include('layouts.websitefeatured')
+
+@include('layouts.websitebrand')
 
 <!-- Newsletter -->
 @include('layouts.websitefooter')

@@ -111,37 +111,4 @@
 
 <!-- Top Brands -->
 
-<section class="container mb-5">
 
-    <h3 class="mb-4">Top Brands</h3>
-
-    <div class="row">
-
-        @foreach($brands as $brand)
-
-        <div class="col-lg-2 col-md-3 col-6 mb-3">
-
-            <div class="card shadow-sm text-center">
-
-                <div class="card-body">
-
-                    <img src="{{ asset('uploads/brands/'.$brand->logo) }}"
-                         width="80">
-
-                    <h6 class="mt-3">
-
-                        {{ $brand->name }}
-
-                    </h6>
-
-                </div>
-
-            </div>
-
-        </div>
-
-        @endforeach
-
-    </div>
-
-</section>

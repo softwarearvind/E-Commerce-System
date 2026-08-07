@@ -5,6 +5,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
         body{
@@ -65,6 +66,48 @@
             font-size:22px;
             color:#fff;
         }
+        .sidebar{
+    height:100vh;
+    overflow-y:auto;
+}
+
     </style>
+
+
+@if(session('success'))
+
+<div class="position-fixed top-0 end-0 p-3"
+     style="z-index:9999">
+
+    <div class="toast show shadow-lg border-0">
+
+        <div class="toast-header bg-success text-white">
+
+            <i class="bi bi-check-circle-fill me-2"></i>
+
+            <strong class="me-auto">
+                Success
+            </strong>
+
+            <button type="button"
+                    class="btn-close btn-close-white"
+                    data-bs-dismiss="toast">
+            </button>
+
+        </div>
+
+
+        <div class="toast-body">
+
+            {{ session('success') }}
+
+        </div>
+
+
+    </div>
+
+</div>
+
+@endif
 
 </head>

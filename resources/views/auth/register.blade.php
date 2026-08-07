@@ -118,6 +118,7 @@
         a:hover { color: #22d3ee; }
     </style>
 </head>
+
 <body>
 
     <div class="bg-blob blob-1"></div>
@@ -149,13 +150,27 @@
                 </div>
 
                 <div class="mb-3 form-floating">
-                    <select class="form-select" id="roleSelect" name="role" required>
-                        <option value="" selected disabled hidden>Choose your role...</option>
-                        <option value="super-admin">Super Admin</option>
-                        <option value="admin">Admin</option>
-                        <option value="vendor">Vendor</option>
-                        <option value="customer">Customer</option>
-                    </select>
+                   <select class="form-select" id="roleSelect" name="role" required>
+
+    <option value="" selected disabled hidden>
+        Choose your role...
+    </option>
+
+    <option value="customer">
+        Customer
+    </option>
+
+
+    @if(request()->type == 'seller')
+
+        <option value="super-admin">Super Admin</option>
+        <option value="admin">Admin</option>
+         <option value="vendor">Vendor</option>
+
+    @endif
+
+
+</select>
                     <label for="roleSelect"><i class="bi bi-shield-lock me-2"></i>Select Role</label>
                     <div class="invalid-feedback">Please select an account type.</div>
                 </div>

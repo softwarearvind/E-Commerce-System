@@ -18,13 +18,16 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-          $products = Product::with(['category', 'brand'])
-        ->when($request->search, function ($query) use ($request) {
-            $query->where('name', 'like', '%' . $request->search . '%')
-                  ->orWhere('sku', 'like', '%' . $request->search . '%');
-        })
-        ->latest()
-        ->paginate(10);
+         $products = Product::with(['category', 'brand'])
+    ->where('vendor_id', Auth::id()) // Sirf login vendor ke products
+    ->when($request->search, function ($query) use ($request) {
+        $query->where(function ($q) use ($request) {
+            $q->where('name', 'like', '%' . $request->search . '%')
+              ->orWhere('sku', 'like', '%' . $request->search . '%');
+        });
+    })
+    ->latest()
+    ->paginate(10);
 
 
     return view('vendor.products.index', compact('products'));

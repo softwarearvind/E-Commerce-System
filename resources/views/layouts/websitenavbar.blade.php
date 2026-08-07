@@ -77,22 +77,40 @@
 
                @auth
     @if(auth()->user()->hasRole('customer'))
-        <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                {{ Auth::user()->name }}
-            </button>
+      <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+        {{ Auth::user()->name }}
+    </button>
 
-            <ul class="dropdown-menu">
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="dropdown-item">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+    <ul class="dropdown-menu">
+
+        <!-- My Orders -->
+        <li>
+            <a href="{{ route('customer.orders') }}" class="dropdown-item">
+                My Orders
+            </a>
+        </li>
+
+        <!-- Track Order -->
+        <li>
+            <a href="" class="dropdown-item">
+                Track Order
+            </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+
+        <!-- Logout -->
+        <li>
+            <form action="{{ route('logout') }}" method="POST">
+                @csrf
+                <button type="submit" class="dropdown-item">
+                    Logout
+                </button>
+            </form>
+        </li>
+    </ul>
+</div>
     @endIf
 @endauth
 
@@ -104,6 +122,11 @@
     <a href="{{ route('register') }}" class="btn btn-success">
         Register
     </a>
+  <a href="{{ route('register', ['type'=>'seller']) }}" 
+   class="seller-btn">
+    <i class="bi bi-shop me-2"></i>
+    Become a Seller
+</a>
 @endguest
 
             </div>

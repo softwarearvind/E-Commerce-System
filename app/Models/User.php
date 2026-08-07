@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 
-#[Fillable(['name', 'email', 'password'])]
+#[Fillable(['name', 'email', 'password','status'])]
 #[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
@@ -34,5 +34,15 @@ class User extends Authenticatable
     public function products()
 {
     return $this->hasMany(Product::class,'vendor_id');
+}
+
+public function items()
+{
+    return $this->hasMany(OrderItem::class);
+}
+
+public function user()
+{
+    return $this->belongsTo(User::class);
 }
 }

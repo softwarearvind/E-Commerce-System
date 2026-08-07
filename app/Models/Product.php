@@ -43,4 +43,5 @@ public function productImages()
 {
     return $this->hasMany(ProductImage::class, 'product_id', 'id');
 }
+
 }

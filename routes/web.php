@@ -12,6 +12,10 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CourseCategoryController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseSectionController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -29,12 +33,16 @@ Route::middleware(['auth', 'role:customer'])->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout.index');
     Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('order.place');
     Route::get('/payment/{order}', [PaymentController::class, 'index'])->name('payment.index');
+    Route::get('customer/orders', [OrderController::class, 'index'])->name('customer.orders');
 
 });
 
 
 Route::middleware(['auth', 'role:super-admin'])->group(function () {
     Route::get('/superadmin/dashboard', [superadminController::class, 'index'])->name('superadmin.dashboard');
+    Route::get('users/index', [superadminController::class, 'usersIndex'])->name('users.index');
+    Route::get('vendors/index',[superadminController::class,'vindoer'])->name('vendors.index');
+    Route::patch('/vendors/{id}/status',[superadminController::class,'updateStatus'])->name('vendors.status');
 });
 
 
@@ -44,6 +52,21 @@ Route::middleware(['auth', 'role:vendor'])->group(function () {
     Route::resource('brands', BrandController::class);
     Route::resource('products', ProductController::class);
     Route::post('/ai/generate-description', [AIController::class, 'generateDescription'])->name('ai.generate.description');
+    Route::get('/vendor/orders', [VindorController::class, 'orders'])->name('vendor.orders');
+    Route::get('/orders/{id}', [VindorController::class, 'show'])->name('orders.show');
+
+    // categories route
+
+    Route::resource('categories',CourseCategoryController::class);
+    //course
+    Route::resource('course',CourseController::class);
+
+    //course-sections
+Route::resource(
+    'sections',
+    CourseSectionController::class
+);
+
 });
 
 

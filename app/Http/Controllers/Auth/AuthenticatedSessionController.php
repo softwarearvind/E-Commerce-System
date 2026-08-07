@@ -31,7 +31,7 @@ class AuthenticatedSessionController extends Controller
     $user = Auth::user();
 
     // Vendor approval check
-    if ($user->hasRole('vendor') && $user->status != 'active') {
+    if ($user->hasRole('vendor') && $user->status != 'approved') {
 
         Auth::logout();
 

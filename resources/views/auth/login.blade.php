@@ -157,8 +157,7 @@
 <body>
 
     <!-- Background Blobs for Visual Depth -->
-    <div class="bg-blob blob-1"></div>
-    <div class="bg-blob blob-2"></div>
+  
 
     <div class="container d-flex justify-content-center align-items-center">
         <div class="login-card">
@@ -172,12 +171,14 @@
                 <p class="text-muted small">Please enter your details to sign in</p>
             </div>
 
-            @error('email')
-    <div class="mt-2 text-danger">
-        {{ $message }}
-    </div>
-@enderror
+              <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
 
+    @if($errors->has('email'))
+    <div class="text-danger">
+        {{ $errors->first('email') }}
+    </div>
+@endif
             <!-- Form -->
             <form method="POST" action="{{ route('login') }}" id="loginForm" autocomplete="off">
                  @csrf
